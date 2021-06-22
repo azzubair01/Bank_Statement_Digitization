@@ -41,7 +41,7 @@ Optical character recognition (OCR) is a subset of machine vision technology tha
     - Run valid.py
     - Run tensorboard.py
     - Run test.py
-    - Run pdf_extract.py
+    - Run pdf_extract_table.py
     - Run extract_metadata.py
 
 ### <b>h) Example of prediction output</b>
