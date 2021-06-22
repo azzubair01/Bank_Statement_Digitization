@@ -30,13 +30,13 @@ Optical character recognition (OCR) is a subset of machine vision technology tha
 ### <b>g) Run the scripts in sequence</b>
   - Before running the scripts, ensure that all paths are correctly defined
     - Run preprocess_images.py
-    - Run label.py
-    - Run augment.py
-    - Run split.py
-    - Run create_csv.py
+    - Run label_images.py
+    - Run augment_images.py
+    - Run split_dataset.py
+    - Run create_csv_file.py
     - Run create_tf_records.py
     - Run download_model.py
-    - Run configure.py
+    - Run configure_settings.py
     - Run train.py
     - Run valid.py
     - Run tensorboard.py
