@@ -1,0 +1,20 @@
+item {
+  name: "account_holder"
+  id: 1
+}
+item {
+  name: "address"
+  id: 2
+}
+item {
+  name: "account_number"
+  id: 3
+}
+item {
+  name: "transactions"
+  id: 4
+}
+item {
+  name: "date"
+  id: 5
+}
