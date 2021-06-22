@@ -51,3 +51,6 @@ Optical character recognition (OCR) is a subset of machine vision technology tha
 ### <b>i) Example of prediction output</b>
 
 <img src="./references/output_cimb.PNG" width="750" height="375" align="center"/>
+
+
+# Note:
