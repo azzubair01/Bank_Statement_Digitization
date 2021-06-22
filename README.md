@@ -49,4 +49,4 @@ Optical character recognition (OCR) is a subset of machine vision technology tha
 <img src="./references/output_cimb.PNG" width="750" height="375" align="center"/>
 
 
-### Note: The current table parser only works on Maybank & CIMB banks using rule-based codings
+#### Note: The current table parser only works on Maybank & CIMB banks using rule-based codings
