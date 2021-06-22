@@ -44,13 +44,9 @@ Optical character recognition (OCR) is a subset of machine vision technology tha
     - Run pdf_extract.py
     - Run extract_metadata.py
 
-### <b>h) Example of prediction input</b>
-
-<img src="./references/cimb.PNG" align="center"/>
-
-### <b>i) Example of prediction output</b>
+### <b>h) Example of prediction output</b>
 
 <img src="./references/output_cimb.PNG" width="750" height="375" align="center"/>
 
 
-# Note:
+### Note: The current table parser only works on Maybank & CIMB banks using rule-based codings
