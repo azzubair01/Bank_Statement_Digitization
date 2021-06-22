@@ -23,7 +23,7 @@ Optical character recognition (OCR) is a subset of machine vision technology tha
 ### - <b>f) Put the bank statements dataset in the train/raw_dataset directory</b>
   - Ensure the PDF files are all text based
   
-### - <b>c) Run the scripts in sequence</b>
+### - <b>g) Run the scripts in sequence</b>
   - Before running the scripts, ensure that all paths are correctly defined
     - Run preprocess.py
     - Run label.py
@@ -40,6 +40,10 @@ Optical character recognition (OCR) is a subset of machine vision technology tha
     - Run pdf_extract.py
     - Run extract_metadata.py
 
-- <b>d) Example of prediction output</b>
+### - <b>h) Example of prediction input</b>
 
-<img src="./references/output_cimb.PNG" width="1000" height="500" align="center"/>
+<img src="./references/cimb.PNG" align="center"/>
+
+### - <b>i) Example of prediction output</b>
+
+<img src="./references/output_cimb.PNG" width="750" height="375" align="center"/>
