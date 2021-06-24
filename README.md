@@ -1,7 +1,3 @@
-<div style="text-align:right"><img src="./references/windows.png" width="50" height="50" align="right"/></div>
-<div style="text-align:right"><img src="./references/cuda.png" width="70" height="60" align="right"/></div>
-<div style="text-align:right"><img src="./references/anaconda.png" width="50" height="50" align="right"/></div>
-
 # Bank Statement Digitization
 Optical character recognition (OCR) is a subset of machine vision technology that focuses on recognizing written letters and characters and reproducing them digitally for later use. This opens up many possibilities for banking industry, including security solutions, and document digitization. In this project, we parsed the transactions in bank statements from PDF files into excel files using Camelot library. Also, we added other important informations from the documents using Tensorflow Object Detection API and Google Tesseract.
 
