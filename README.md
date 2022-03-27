@@ -20,10 +20,22 @@ Optical character recognition (OCR) is a subset of machine vision technology tha
   - conda install cudatoolkit
   - pip install -r 'requirements.txt'
 
-### <b>f) Put the bank statements dataset in the train/raw_dataset directory</b>
+### <b>f) Install Poppler</b>
+  - Install poppler from here: https://blog.alivate.com.au/poppler-windows/
+
+### <b>g) Copy protos from tensorflow directory to anaconda environment </b>
+  - Copy all files from '..\models\research\object_detection\protos' to '..\anaconda3\envs\Bank_Statement_Digitization\Lib\site-packages\object_detection\protos'
+
+### <b>h) Change object detection path in requirements.txt </b>
+  - At line 67, change 'object-detection @ file:///../Bank_Statement_Digitization/train/models/research' accordingly
+
+### <b>i) Change object detection path in requirements.txt </b>
+  - Copy setup.py from '..\models\research\object_detection\packages\tf2' to '..\models\research'
+
+### <b>j) Put the bank statements dataset in the train/raw_dataset directory</b>
   - Ensure the PDF files are all text based
   
-### <b>g) Run the scripts in sequence</b>
+### <b>k) Run the scripts in sequence</b>
   - Before running the scripts, ensure that all paths are correctly defined
     - Run preprocess_images.py
     - Run label_images.py
@@ -40,7 +52,7 @@ Optical character recognition (OCR) is a subset of machine vision technology tha
     - Run pdf_extract_table.py
     - Run extract_metadata.py
 
-### <b>h) Example of prediction output</b>
+### <b>l) Example of prediction output</b>
 
 <img src="./references/output_cimb.PNG" width="750" height="375" align="center"/>
 
