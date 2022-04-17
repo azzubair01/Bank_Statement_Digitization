@@ -15,7 +15,7 @@ from pytesseract import Output
 coordinates_df = pd.read_csv('C:\\Users\\DataMicron\\Desktop\\Bank_Statement_Reader\\predicted_coordinates_cimb.csv')
 input_path = 'C:\\Users\\DataMicron\\Desktop\\Bank_Statement_Reader\\processing_images\\cimb\\'
 process_path = 'C:\\Users\\DataMicron\\Desktop\\Bank_Statement_Reader\\cropped_images\\cimb\\'
-output_path = 'C:\\Users\\DataMicron\\Desktop\\Bank_Statement_Reader\\overall_output\\'
+output_path = 'C:\\Users\\DataMicron\\Desktop\\Bank_Statement_Reader\\financial_output\\cimb\\'
 excel_file_path = 'C:\\Users\\DataMicron\\Desktop\\Bank_Statement_Reader\\transaction_output\\cimb\\'
 excel_files = sorted(os.listdir(excel_file_path))
 
@@ -70,7 +70,7 @@ raw_info = pd.DataFrame(rows, columns=['Image', 'Key', 'Value'])
 for i, excel in tqdm(enumerate(excel_files)):
     output_df = pd.read_excel(excel_file_path + excel)
     statement_name1 = excel[12:-5]
-    with pd.ExcelWriter(output_path + excel[:-5] + '.xlsx', engine='xlsxwriter') as writer:
+    with pd.ExcelWriter(output_path + 'output_'+ excel[12:-5] + '.xlsx', engine='xlsxwriter') as writer:
         rows = []
         for j in range(len(raw_info)):
             statement_name2 = raw_info['Image'][j][:15]
@@ -89,7 +89,7 @@ for i, excel in tqdm(enumerate(excel_files)):
 coordinates_df2 = pd.read_csv('C:\\Users\\DataMicron\\Desktop\\Bank_Statement_Reader\\predicted_coordinates_mayb.csv')
 input_path2 = 'C:\\Users\\DataMicron\\Desktop\\Bank_Statement_Reader\\processing_images\\mayb\\'
 process_path2 = 'C:\\Users\\DataMicron\\Desktop\\Bank_Statement_Reader\\cropped_images\\mayb\\'
-output_path2 = 'C:\\Users\\DataMicron\\Desktop\\Bank_Statement_Reader\\overall_output\\'
+output_path2 = 'C:\\Users\\DataMicron\\Desktop\\Bank_Statement_Reader\\financial_output\\mayb\\'
 excel_file_path2 = 'C:\\Users\\DataMicron\\Desktop\\Bank_Statement_Reader\\transaction_output\\mayb\\'
 excel_files2 = sorted(os.listdir(excel_file_path2))
 
@@ -144,7 +144,7 @@ raw_info2 = pd.DataFrame(rows2, columns=['Image', 'Key', 'Value'])
 for i, excel in tqdm(enumerate(excel_files2)):
     output_df2 = pd.read_excel(excel_file_path2 + excel)
     statement_name1 = excel[12:-5]
-    with pd.ExcelWriter(output_path2 + excel[:-5] + '.xlsx', engine='xlsxwriter') as writer2:
+    with pd.ExcelWriter(output_path2 + 'output_'+ excel[12:-5] + '.xlsx', engine='xlsxwriter') as writer2:
         rows = []
         for j in range(len(raw_info2)):
             statement_name2 = raw_info2['Image'][j][:18]
