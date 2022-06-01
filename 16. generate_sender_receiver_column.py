@@ -61,6 +61,14 @@ for j in tqdm(range(len(file_list))):
             pattern1 = re.search('TRANSFER FROM A/C',
                                  df_transaction['BUTIR URUSNIAGA\n進支項說明\nTRANSACTION DESCRIPTION'][i])
             pattern2 = re.search('[*]|TABUNG HAJI TRF|', df_transaction['BUTIR URUSNIAGA\n進支項說明\nTRANSACTION DESCRIPTION'][i])
+
+            if pattern2.span()[1] == 0:
+                entity = 'TRANSFER TO MAE'
+
+            else:
+                description_text = df_transaction['BUTIR URUSNIAGA\n進支項說明\nTRANSACTION DESCRIPTION'][i]
+                entity = description_text[pattern1.span()[1]:pattern2.span()[0]]
+
             description_text = df_transaction['BUTIR URUSNIAGA\n進支項說明\nTRANSACTION DESCRIPTION'][i]
             entity = description_text[pattern1.span()[1]:pattern2.span()[0]]
             # entity = ''
@@ -118,7 +126,7 @@ for j in tqdm(range(len(file_list))):
             pattern2 = re.search('[*]|', df_transaction['BUTIR URUSNIAGA\n進支項說明\nTRANSACTION DESCRIPTION'][i])
 
             if pattern2.span()[1] == 0:
-                entity = 'PAYMENT FROM MYSELF'
+                entity = 'PAYMENT USING MAE'
 
             else:
                 description_text = df_transaction['BUTIR URUSNIAGA\n進支項說明\nTRANSACTION DESCRIPTION'][i]
