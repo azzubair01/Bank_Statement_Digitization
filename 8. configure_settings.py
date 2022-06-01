@@ -13,9 +13,6 @@ labelmap_path = 'train/label_map.pbtxt'
 pipeline_config_path = 'train/frcnn_v1.config'
 fine_tune_checkpoint = 'train/frcnn_v1/checkpoint/ckpt-0'
 
-# pipeline_config_path = 'train/mobilenet_v2.config'
-# fine_tune_checkpoint = 'train/mobilenet_v2/checkpoint/ckpt-0'
-
 with open(pipeline_config_path) as f:
     config = f.read()
 

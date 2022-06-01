@@ -7,113 +7,114 @@ import pandas as pd
 import pikepdf
 from tqdm import tqdm
 
-input_path_cimb = 'C:\\Users\\DataMicron\\Desktop\\Bank_Statement_Reader\\raw_dataset\\cimb\\'
-input_path_mayb = 'C:\\Users\\DataMicron\\Desktop\\Bank_Statement_Reader\\raw_dataset\\mayb\\'
+os.chdir('C:/Users/DataMicron/Desktop/Bank_Statement_Reader/')
 
-cimb_files = sorted(os.listdir(input_path_cimb))
+# input_path_cimb = 'raw_dataset\\cimb\\'
+input_path_mayb = 'raw_dataset\\mayb\\'
+
+# cimb_files = sorted(os.listdir(input_path_cimb))
 mayb_files = sorted(os.listdir(input_path_mayb))
 
-output_path_cimb = 'C:\\Users\\DataMicron\\Desktop\\Bank_Statement_Reader\\transaction_output\\cimb\\'
-output_path_mayb = 'C:\\Users\\DataMicron\\Desktop\\Bank_Statement_Reader\\transaction_output\\mayb\\'
+# output_path_cimb = 'prediction\\2. transaction_output\\cimb\\'
+output_path_mayb = 'prediction\\2. transaction_output\\mayb\\'
 
 
-
-if not os.path.exists(output_path_cimb):
-    subprocess.call("powershell mkdir " + output_path_cimb)
+# if not os.path.exists(output_path_cimb):
+#     os.makedirs(output_path_cimb)
 
 if not os.path.exists(output_path_mayb):
-    subprocess.call("powershell mkdir " + output_path_mayb)
+    os.makedirs(output_path_mayb)
 
-for i, pdf in tqdm(enumerate(cimb_files)):
-    file = pikepdf.open(input_path_cimb + pdf, allow_overwriting_input=True)
-    file.save(input_path_cimb + pdf)
+# for i, pdf in tqdm(enumerate(cimb_files)):
+#     file = pikepdf.open(input_path_cimb + pdf, allow_overwriting_input=True)
+#     file.save(input_path_cimb + pdf)
 
 for i, pdf in tqdm(enumerate(mayb_files)):
     file = pikepdf.open(input_path_mayb + pdf, allow_overwriting_input=True)
     file.save(input_path_mayb + pdf)
 
-for i, pdf in tqdm(enumerate(cimb_files)):
-        table = camelot.read_pdf(input_path_cimb + pdf, pages='all', flavor='lattice')
-        tables = pd.DataFrame()
-        with pd.ExcelWriter(output_path_cimb + 'transaction_' + pdf[:-4] + '.xlsx', engine='xlsxwriter') as writer:
-            tables = pd.DataFrame()
-            for x in range(len(table)):
-                if x == 0:
-                    tables = tables.append(table[0].df)
-                elif table[0].df[0][0] == table[x].df[0][0]:
-                    tables = tables.append(table[x].df.iloc[1:])
-            tables = tables.reset_index().drop(columns=['index'], axis=1)
-
-            columns = tables[0][0].split("\n")
-            columns = columns[:7]
-
-            dates = []
-            descriptions = []
-            refs = []
-            withdraws = []
-            deposits = []
-            taxes = []
-            balances = []
-            for i in range(2, len(tables)):
-
-                # Get date & description
-                # ----------------------------------------
-                date = tables[0][i][:10]
-                description = tables[0][i][12:]
-                add_description = tables[1][i]
-                ref = tables[2][i]
-                # ----------------------------------------
-
-                # Get withdrawal (debit)
-                # ----------------------------------------
-                withdraw = re.sub(',', '', tables[3][i])
-                if withdraw == '':
-                    withdraw = 0
-                else:
-                    withdraw = float(withdraw)
-                # ----------------------------------------
-
-                # Get deposit (credit)
-                # ----------------------------------------
-                deposit = re.sub(',', '', tables[4][i])
-                if deposit == '':
-                    deposit = 0
-                else:
-                    deposit = float(deposit)
-                # ----------------------------------------
-
-                # Get tax
-                # ----------------------------------------
-                tax = re.sub(',', '', tables[5][i])
-                if tax == '':
-                    tax = 0
-                else:
-                    tax = float(tax)
-                # ----------------------------------------
-
-                # Get account balance
-                # ----------------------------------------
-                balance = re.sub(',', '', tables[6][i])
-                if balance == '':
-                    balance = 0
-                else:
-                    balance = float(balance)
-                # ----------------------------------------
-
-                # Append all lists
-                # ----------------------------------------
-                dates.append(date)
-                descriptions.append(description + '\n' + add_description)
-                refs.append(ref)
-                withdraws.append(withdraw)
-                deposits.append(deposit)
-                taxes.append(tax)
-                balances.append(balance)
-                # ----------------------------------------
-
-            transactions_df = pd.DataFrame(list([dates, descriptions, refs, withdraws, deposits, taxes, balances])).T
-            transactions_df.columns = columns
-            transactions_df.to_excel(writer, sheet_name='transactions', index=False)
+# for i, pdf in tqdm(enumerate(cimb_files)):
+#         table = camelot.read_pdf(input_path_cimb + pdf, pages='all', flavor='lattice')
+#         tables = pd.DataFrame()
+#         with pd.ExcelWriter(output_path_cimb + 'transaction_' + pdf[:-4] + '.xlsx', engine='xlsxwriter') as writer:
+#             tables = pd.DataFrame()
+#             for x in range(len(table)):
+#                 if x == 0:
+#                     tables = tables.append(table[0].df)
+#                 elif table[0].df[0][0] == table[x].df[0][0]:
+#                     tables = tables.append(table[x].df.iloc[1:])
+#             tables = tables.reset_index().drop(columns=['index'], axis=1)
+#
+#             columns = tables[0][0].split("\n")
+#             columns = columns[:7]
+#
+#             dates = []
+#             descriptions = []
+#             refs = []
+#             withdraws = []
+#             deposits = []
+#             taxes = []
+#             balances = []
+#             for i in range(2, len(tables)):
+#
+#                 # Get date & description
+#                 # ----------------------------------------
+#                 date = tables[0][i][:10]
+#                 description = tables[0][i][12:]
+#                 add_description = tables[1][i]
+#                 ref = tables[2][i]
+#                 # ----------------------------------------
+#
+#                 # Get withdrawal (debit)
+#                 # ----------------------------------------
+#                 withdraw = re.sub(',', '', tables[3][i])
+#                 if withdraw == '':
+#                     withdraw = 0
+#                 else:
+#                     withdraw = float(withdraw)
+#                 # ----------------------------------------
+#
+#                 # Get deposit (credit)
+#                 # ----------------------------------------
+#                 deposit = re.sub(',', '', tables[4][i])
+#                 if deposit == '':
+#                     deposit = 0
+#                 else:
+#                     deposit = float(deposit)
+#                 # ----------------------------------------
+#
+#                 # Get tax
+#                 # ----------------------------------------
+#                 tax = re.sub(',', '', tables[5][i])
+#                 if tax == '':
+#                     tax = 0
+#                 else:
+#                     tax = float(tax)
+#                 # ----------------------------------------
+#
+#                 # Get account balance
+#                 # ----------------------------------------
+#                 balance = re.sub(',', '', tables[6][i])
+#                 if balance == '':
+#                     balance = 0
+#                 else:
+#                     balance = float(balance)
+#                 # ----------------------------------------
+#
+#                 # Append all lists
+#                 # ----------------------------------------
+#                 dates.append(date)
+#                 descriptions.append(description + '\n' + add_description)
+#                 refs.append(ref)
+#                 withdraws.append(withdraw)
+#                 deposits.append(deposit)
+#                 taxes.append(tax)
+#                 balances.append(balance)
+#                 # ----------------------------------------
+#
+#             transactions_df = pd.DataFrame(list([dates, descriptions, refs, withdraws, deposits, taxes, balances])).T
+#             transactions_df.columns = columns
+#             transactions_df.to_excel(writer, sheet_name='transactions', index=False)
 
 
 for i, pdf in tqdm(enumerate(mayb_files)):
